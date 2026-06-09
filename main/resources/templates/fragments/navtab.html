@@ -1,0 +1,49 @@
+<th:block xmlns:th="http://www.thymeleaf.org" 
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+  th:fragment="navtab">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Laminat19</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+         <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/data?page=0&size=30">Товар и услуги</a>
+        </li>
+          <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+          <a class="nav-link" aria-current="page" href="/contact">Контакты</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/request.send">Составить Заявку</a>
+        </li>
+          <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+          <a class="nav-link" aria-current="page" href="/request">Прием Заявок</a>
+        </li>
+         <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+          <a class="nav-link" aria-current="page" href="/user">Пользователи</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/news">Новости</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" aria-current="page" href="/reviews">Отзывы</a>
+        </li>
+      </ul>
+     </div>
+          <li class="nav-item me-5" sec:authorize="hasAuthority('USER') or hasAuthority('ADMIN')">
+          <a class="nav-link" aria-current="page" href="/user/profile">Профиль </a>
+        </li>
+     <div class="navbar-text me-3" sec:authentication="name">
+     </div>
+      <form th:action="@{/logout}" method="post"  
+          sec:authorize="hasAuthority('USER') or hasAuthority('ADMIN')">
+            <button class="btn btn-danger" type="submit">Выйти</button> 
+      </form>
+      <form th:action="@{/login}" method="post"  
+          sec:authorize="!hasAuthority('USER') and !hasAuthority('ADMIN')">
+            <button class="btn btn-danger" type="submit">Войти</button> 
+      </form>
+ </nav>
+</th:block>

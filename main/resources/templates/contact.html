@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"   
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head> 
+    <title th:text=${title}/> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+     rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="fragments/navtab"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<div class="container">
+
+    <div class="mt-2">
+        <h2>Поиск Контакта</h2>
+        <form th:action="@{/contact}" method="get">
+            <input type="text" name="filter" placeholder="Имя пользователя" th:value="${filter}">
+            <button type="submit" class="ms-2 btn btn-danger">Найти</button>
+        </form>
+    </div>
+
+    <div th:insert="fragments/pager"></div>
+
+    <h2>Контакты</h2>
+    <h5>Имя - Телефон</h5>
+
+    <div>
+        <div th:if="${page.content.isEmpty()}" class="text-muted m-2">
+            Контактов не найдено.
+        </div>
+        <div th:each="user : ${page.content}">
+            <div class="m-2">
+                <span th:text="${user.username}"></span> -
+                <em th:text="${user.number}"></em>
+            </div>
+        </div>
+    </div>
+
+    <div th:insert="fragments/pager"></div>
+</div>
+</body>
+</html>

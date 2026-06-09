@@ -1,0 +1,14 @@
+body {
+    color: #DC143C;    
+}
+
+.accordion .accordion-button[aria-expanded="true"] {
+    background-color: #e0c7ca; 
+    color: #af3844; 
+    border-color: #f5c6cb; 
+}
+
+.btn-red-500 {
+  background-color: #ec4242 !important; 
+  color: #fff !important;
+}

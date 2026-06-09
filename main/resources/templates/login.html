@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Логин </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="/static/style.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+     rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    </head>
+    <body>
+<div th:insert="fragments/navtab"></div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+       <div class="container mt-5 text-center mb-2" >
+        <div class="mb-2">Логин</div>
+        <span th:text="${message}">Текст</span>
+        <div th:if="${param.error}">
+            Неверный логин или пароль.
+        </div>
+        <div th:if="${param.logout}">
+            Вы вышли из аккаунта.
+        </div>
+        <form th:action="@{/login}" method="post" class="d-flex flex-column align-items-center">
+            <div class="mb-3 col-sm-5">
+                <input type="text" name="username" class="form-control" 
+                placeholder="Имя Пользователя"/></div>
+            <div class="mb-3 col-sm-5">
+                <input type="password" name="password" class="form-control" 
+                placeholder="Пароль"/>
+            </div>
+            <div><input type="submit" class="btn btn-danger" value="Авторизация"/></div>
+        </form>
+        <a href="/registration">Зарегистрироваться</a>
+        </div>
+    </body>
+</html>
